@@ -16,14 +16,10 @@ import org.wit.placemark.views.placemark.PlacemarkView
 import org.wit.placemark.views.placemarklist.PlacemarkListView
 import org.wit.placemark.views.login.LoginView
 
-val IMAGE_REQUEST = 1
-val LOCATION_REQUEST = 2
 
-enum class VIEW { LOCATION, PLACEMARK, MAPS, LIST, LOGIN, HOME }
+open abstract class BaseFragmentView() : AppCompatActivity(), AnkoLogger  {
 
-open abstract class BaseView() : AppCompatActivity(), AnkoLogger  {
-
-  var basePresenter: BasePresenter? = null
+  var baseFragmentPresenter: BaseFragmentPresenter? = null
 
   fun navigateTo(view: VIEW, code: Int = 0, key: String = "", value: Parcelable? = null) {
     var intent = Intent(this, PlacemarkListView::class.java)
@@ -51,9 +47,9 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger  {
     }
   }
 
-  fun initPresenter(presenter: BasePresenter): BasePresenter {
-    basePresenter = presenter
-    return presenter
+  fun initFragmentPresenter(fragmentPresenter: BaseFragmentPresenter): BaseFragmentPresenter {
+    baseFragmentPresenter = fragmentPresenter
+    return fragmentPresenter
   }
 
   fun init(toolbar: Toolbar) {
@@ -62,7 +58,7 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger  {
   }
 
   override fun onDestroy() {
-    basePresenter?.onDestroy()
+    baseFragmentPresenter?.onDestroy()
     super.onDestroy()
   }
 
@@ -70,12 +66,12 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger  {
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if (data != null) {
-      basePresenter?.doActivityResult(requestCode, resultCode, data)
+      baseFragmentPresenter?.doActivityResult(requestCode, resultCode, data)
     }
   }
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-    basePresenter?.doRequestPermissionsResult(requestCode, permissions, grantResults)
+    baseFragmentPresenter?.doRequestPermissionsResult(requestCode, permissions, grantResults)
   }
 
   open fun showPlacemark(placemark: PlacemarkModel) {}

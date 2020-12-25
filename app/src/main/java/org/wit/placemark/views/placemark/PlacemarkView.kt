@@ -13,9 +13,10 @@ import org.wit.placemark.R
 import org.wit.placemark.helpers.readImageFromPath
 import org.wit.placemark.models.Location
 import org.wit.placemark.models.PlacemarkModel
+import org.wit.placemark.views.BaseFragmentView
 import org.wit.placemark.views.BaseView
 
-class PlacemarkView : BaseView(), AnkoLogger {
+class PlacemarkView : BaseFragmentView(), AnkoLogger {
 
   lateinit var presenter: PlacemarkPresenter
   var placemark = PlacemarkModel()
@@ -34,7 +35,7 @@ class PlacemarkView : BaseView(), AnkoLogger {
       it.setOnMapClickListener { presenter.doSetLocation() }
     }
 
-    presenter = initPresenter (PlacemarkPresenter(this)) as PlacemarkPresenter
+    presenter = initFragmentPresenter (PlacemarkPresenter(this)) as PlacemarkPresenter
 
     chooseImage.setOnClickListener {
       presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString())

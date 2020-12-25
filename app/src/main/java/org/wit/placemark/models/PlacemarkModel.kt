@@ -5,7 +5,10 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 
+@IgnoreExtraProperties
 @Parcelize
 @Entity
 data class PlacemarkModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
@@ -19,3 +22,4 @@ data class PlacemarkModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
 data class Location(var lat: Double = 0.0,
                     var lng: Double = 0.0,
                     var zoom: Float = 0f) : Parcelable
+
