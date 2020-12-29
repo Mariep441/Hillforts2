@@ -1,10 +1,13 @@
 package org.wit.placemark.views
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -20,10 +23,16 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.wit.placemark.R
 import org.wit.placemark.fragments.AboutUsFragment
-import org.wit.placemark.fragments.NewPlacemarkFragment
+import org.wit.placemark.fragments.AddPlacemarkFragment
 import org.wit.placemark.fragments.ReportFragment
 import org.wit.placemark.main.MainApp
+import org.wit.placemark.models.Location
+import org.wit.placemark.models.PlacemarkModel
+import org.wit.placemark.views.location.EditLocationView
 import org.wit.placemark.views.login.LoginView
+import org.wit.placemark.views.map.PlacemarkMapView
+import org.wit.placemark.views.placemark.PlacemarkView
+import org.wit.placemark.views.placemarklist.PlacemarkListView
 
 class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,7 +60,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         ft = supportFragmentManager.beginTransaction()
 
-        val fragment = NewPlacemarkFragment.newInstance()
+        val fragment = AboutUsFragment.newInstance()
         ft.replace(R.id.homeFrame, fragment)
         ft.commit()
     }
@@ -60,7 +69,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         when (item.itemId) {
             R.id.nav_newplacemark ->
-                navigateTo(NewPlacemarkFragment.newInstance())
+                navigateTo(AddPlacemarkFragment.newInstance())
             R.id.nav_report ->
                 navigateTo(ReportFragment.newInstance())
             R.id.nav_aboutus ->
@@ -74,6 +83,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         return true
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
@@ -82,10 +92,29 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.item_add -> toast("You Selected Donate")
-            R.id.item_map -> toast("You Selected Report")
+            R.id.item_add -> navigateTo( VIEW.PLACEMARK)
+            R.id.item_list -> navigateTo( VIEW.LIST)
+            R.id.item_map -> navigateTo( VIEW.MAPS)
         }
+
         return super.onOptionsItemSelected(item)
+    }
+
+
+    fun navigateTo(view: VIEW, code: Int = 0, key: String = "", value: Parcelable? = null) {
+        var intent = Intent(this, PlacemarkListView::class.java)
+        when (view) {
+            VIEW.LOCATION -> intent = Intent(this, EditLocationView::class.java)
+            VIEW.PLACEMARK -> intent = Intent(this, PlacemarkView::class.java)
+            VIEW.MAPS -> intent = Intent(this, PlacemarkMapView::class.java)
+            VIEW.LIST -> intent = Intent(this, PlacemarkListView::class.java)
+            VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
+            VIEW.HOME -> intent = Intent(this, Home::class.java)
+        }
+        if (key != "") {
+            intent.putExtra(key, value)
+        }
+        startActivityForResult(intent, code)
     }
 
     override fun onBackPressed() {

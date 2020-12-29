@@ -13,7 +13,7 @@ import org.wit.placemark.views.BaseView
 
 class PlacemarkMapPresenter(view: BaseView) : BasePresenter(view) {
 
-  fun doPopulateMap(map: GoogleMap, placemarks: List<PlacemarkModel>) {
+  fun doPopulateMap(map: GoogleMap, placemarks: ArrayList<PlacemarkModel>) {
     map.uiSettings.setZoomControlsEnabled(true)
     placemarks.forEach {
       val loc = LatLng(it.location.lat, it.location.lng)
@@ -36,7 +36,7 @@ class PlacemarkMapPresenter(view: BaseView) : BasePresenter(view) {
     doAsync {
       val placemarks = app.placemarks.findAll()
       uiThread {
-        view?.showPlacemarks(placemarks)
+        view?.showPlacemarks(placemarks as ArrayList<PlacemarkModel>)
       }
     }
   }

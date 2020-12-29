@@ -19,9 +19,11 @@ import org.wit.placemark.views.login.LoginView
 val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
-enum class VIEW { LOCATION, PLACEMARK, MAPS, LIST, LOGIN, HOME }
+enum class VIEW {
+  LOCATION, PLACEMARK, MAPS, LIST, LOGIN, HOME
+}
 
-open abstract class BaseView() : AppCompatActivity(), AnkoLogger  {
+open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 
   var basePresenter: BasePresenter? = null
 
@@ -79,7 +81,7 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger  {
   }
 
   open fun showPlacemark(placemark: PlacemarkModel) {}
-  open fun showPlacemarks(placemarks: List<PlacemarkModel>) {}
+  open fun showPlacemarks(placemarks: ArrayList<PlacemarkModel>) {}
   open fun showLocation(location : Location) {}
   open fun showProgress() {}
   open fun hideProgress() {}

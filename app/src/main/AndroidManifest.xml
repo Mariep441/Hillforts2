@@ -28,18 +28,20 @@
         <activity
             android:name=".views.login.LoginView"
             android:label="@string/title_activity_placemark_list"
-            android:launchMode="singleTop" >
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
             android:name=".views.placemarklist.PlacemarkListView"
             android:label="@string/title_activity_placemark_list"
-            android:launchMode="singleTop" >
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
             android:name=".views.placemark.PlacemarkView"
-            android:label="@string/title_activity_placemark" >
+            android:label="@string/title_activity_placemark"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.placemarklist.PlacemarkListView" />

@@ -8,8 +8,6 @@ import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
-
-
 import androidx.recyclerview.widget.RecyclerView
 import org.wit.placemark.R
 

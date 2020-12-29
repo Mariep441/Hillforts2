@@ -26,7 +26,7 @@ class PlacemarkListPresenter(view: BaseView) : BasePresenter(view) {
     doAsync {
       val placemarks = app.placemarks.findAll()
       uiThread {
-        view?.showPlacemarks(placemarks)
+        view?.showPlacemarks(placemarks as ArrayList<PlacemarkModel>)
       }
     }
   }

@@ -20,7 +20,7 @@ import org.wit.placemark.models.Location
 import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.views.*
 
-class PlacemarkPresenter(view: BaseFragmentView) : BaseFragmentPresenter(view) {
+class PlacemarkPresenter(view: BaseView) : BasePresenter(view) {
 
   var map: GoogleMap? = null
   var placemark = PlacemarkModel()
