@@ -38,7 +38,7 @@ class PlacemarkMapView : BaseView(), GoogleMap.OnMarkerClickListener {
     Glide.with(this).load(placemark.image).into(currentImage);
   }
 
-  override fun showPlacemarks(placemarks: List<PlacemarkModel>) {
+  override fun showPlacemarks(placemarks: ArrayList<PlacemarkModel>) {
     presenter.doPopulateMap(map, placemarks)
   }
 

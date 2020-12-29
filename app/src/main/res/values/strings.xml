@@ -4,6 +4,7 @@
   <string name="button_addPlacemark">Add Placemark</string>
   <string name="hint_placemarkDescription">Description </string>
   <string name="menu_addPlacemark">Add</string>
+  <string name="menu_list">List</string>
   <string name="menu_cancelPlacemark">Cancel</string>
   <string name="enter_placemark_title"> Please enter a Placemark Title </string>
   <string name="save_placemark"> Save Placemark </string>
@@ -25,11 +26,11 @@
   <string name="menu_logout">Logout</string>
 
 
-  <string name="action_donate">Donate</string>
+  <string name="action_addplacemark">Add Placemark</string>
   <string name="action_report">Report</string>
-  <string name="donateTitle">Welcome Homer</string>
+  <string name="Title">Welcome Homer</string>
   <string name="donateSubtitle">Please Give Generously</string>
-  <string name="donateButton">Donate</string>
+  <string name="addPlacemarkButton">Add Placemark</string>
   <string name="paypal">PayPal</string>
   <string name="direct">Direct</string>
   <string name="amount">Amount</string>
@@ -43,7 +44,7 @@
   <string name="title_activity_home">Home</string>
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
-  <string name="nav_header_title">Donation (Lab A13)</string>
+  <string name="nav_header_title">Hillforts of Ireland</string>
   <string name="nav_header_subtitle">voteforhomer@android.com</string>
   <string name="nav_header_desc">Navigation header</string>
   <string name="action_settings">Settings</string>
@@ -55,8 +56,8 @@
   <string name="menu_share">Share</string>
   <string name="menu_send">Send</string>
 
-  <string name="aboutus_title">Homer for President !!</string>
-  <string name="aboutus_message">Hi, I\'m Homer\n\nPlease vote for me.\n\n Please Please Please Please!!</string>
+  <string name="aboutus_title">Hillforts of Ireland</string>
+  <string name="aboutus_message">Archaeological Fieldwork : Part II\n\nMobile Application Development\n\n HDIP Computer Science</string>
 
   <string name="messageLoading">Please wait while we Connect to the Server...</string>
 
@@ -89,6 +90,11 @@
 
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 
   <!--END Firebase Resources-->
 

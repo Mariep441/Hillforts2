@@ -21,7 +21,7 @@
         android:contentDescription="@string/change_placemark_image" />
 
     <TextView
-        android:id="@+id/placemarkTitle"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -32,7 +32,7 @@
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/placemarkTitle"
+        android:layout_below="@id/title"
         android:layout_toEndOf="@+id/imageIcon"/>
 
   </RelativeLayout>

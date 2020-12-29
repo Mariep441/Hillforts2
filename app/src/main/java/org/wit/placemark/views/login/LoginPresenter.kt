@@ -25,11 +25,11 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
         if (fireStore != null) {
           fireStore!!.fetchPlacemarks {
             view?.hideProgress()
-            view?.navigateTo(VIEW.LIST)
+            view?.navigateTo(VIEW.HOME)
           }
         } else {
           view?.hideProgress()
-          view?.navigateTo(VIEW.LIST)
+          view?.navigateTo(VIEW.HOME)
         }
       } else {
         view?.hideProgress()
@@ -42,12 +42,8 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
     view?.showProgress()
     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(view!!) { task ->
       if (task.isSuccessful) {
-        fireStore!!.fetchPlacemarks {
-          view?.hideProgress()
-          view?.navigateTo(VIEW.LIST)
-        }
         view?.hideProgress()
-        view?.navigateTo(VIEW.LIST)
+        view?.navigateTo(VIEW.HOME)
       } else {
         view?.hideProgress()
         view?.toast("Sign Up Failed: ${task.exception?.message}")

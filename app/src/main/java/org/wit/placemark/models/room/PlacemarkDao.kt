@@ -12,8 +12,8 @@ interface PlacemarkDao {
   @Query("SELECT * FROM PlacemarkModel")
   fun findAll(): List<PlacemarkModel>
 
-  @Query("select * from PlacemarkModel where id = :id")
-  fun findById(id: Long): PlacemarkModel
+  @Query("select * from PlacemarkModel where uid = uid")
+  fun findById(id: String): PlacemarkModel
 
   @Update
   fun update(placemark: PlacemarkModel)
