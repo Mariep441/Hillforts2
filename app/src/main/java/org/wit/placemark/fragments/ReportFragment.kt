@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
 
@@ -132,12 +133,12 @@ class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
 
     fun getAllPlacemarks(userId: String?) {
         loader = createLoader(activity!!)
-        showLoader(loader, "Downloading Donations from Firebase")
+        showLoader(loader, "Downloading Placemarks from Firebase")
         val placemarksList = ArrayList<PlacemarkModel>()
-        app.database.child("user-donations").child(userId!!)
+        app.database.child("user-placemarks").child(userId!!)
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
-                        info("Firebase Donation error : ${error.message}")
+                        info("Firebase Placemark error : ${error.message}")
                     }
 
                     override fun onDataChange(snapshot: DataSnapshot) {

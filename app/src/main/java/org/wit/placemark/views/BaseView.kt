@@ -19,9 +19,7 @@ import org.wit.placemark.views.login.LoginView
 val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
-enum class VIEW {
-  LOCATION, PLACEMARK, MAPS, LIST, LOGIN, HOME
-}
+enum class VIEW { LOCATION, PLACEMARK, MAPS, LIST, LOGIN, HOME }
 
 open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 
