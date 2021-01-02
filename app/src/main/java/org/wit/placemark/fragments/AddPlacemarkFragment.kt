@@ -59,7 +59,7 @@ class AddPlacemarkFragment : Fragment(), AnkoLogger {
     fun setButtonListener( layout: View) {
         layout.addPlacemarkButton.setOnClickListener {
             val title = layout.title.text.toString()
-                writeNewPlacemark(PlacemarkModel(title = title, email = app.auth.currentUser?.email))
+                writeNewPlacemark(PlacemarkModel(title = title))
         }
     }
 

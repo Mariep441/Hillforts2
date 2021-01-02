@@ -4,14 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_placemark_list.*
 import org.wit.placemark.R
-import org.wit.placemark.fragments.AddPlacemarkFragment
 import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.views.BaseView
 
-class PlacemarkListView :  BaseView(), PlacemarkListener {
+class PlacemarkListView :  BaseView(),
+  PlacemarkListener {
 
   lateinit var presenter: PlacemarkListPresenter
 
@@ -21,15 +20,19 @@ class PlacemarkListView :  BaseView(), PlacemarkListener {
     setSupportActionBar(toolbar)
     super.init(toolbar, false)
 
+
     presenter = initPresenter(PlacemarkListPresenter(this)) as PlacemarkListPresenter
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     presenter.loadPlacemarks()
+
   }
 
+
   override fun showPlacemarks(placemarks: ArrayList<PlacemarkModel>) {
-    recyclerView.adapter = PlacemarkAdapter(placemarks, this)
+    recyclerView.adapter =
+      PlacemarkAdapter(placemarks, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }
 

@@ -28,11 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:layout_marginRight="5dp"
-        android:text="Upvotes :"
+        android:text="Rating :"
         android:textAlignment="viewEnd"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editUpvotes"
+        app:layout_constraintEnd_toStartOf="@+id/editRating"
         app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -48,10 +48,10 @@
         android:textAlignment="viewStart"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPaymenttype" />
+        app:layout_constraintTop_toBottomOf="@+id/editVisited" />
 
     <TextView
-        android:id="@+id/editPaymenttype"
+        android:id="@+id/editVisited"
         android:layout_width="210dp"
         android:layout_height="52dp"
         android:layout_marginTop="18dp"
@@ -61,10 +61,10 @@
         android:textColor="@color/grey_500"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editAmount" />
+        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
     <EditText
-        android:id="@+id/editUpvotes"
+        android:id="@+id/editRating"
         android:layout_width="210dp"
         android:layout_height="46dp"
         android:layout_marginTop="12dp"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.002" />
 
     <EditText
-        android:id="@+id/editAmount"
+        android:id="@+id/editDescription"
         android:layout_width="210dp"
         android:layout_height="49dp"
         android:layout_marginTop="60dp"
@@ -99,7 +99,7 @@
         android:textAlignment="viewEnd"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editAmount"
+        app:layout_constraintEnd_toStartOf="@+id/editDescription"
         app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -114,7 +114,7 @@
         android:textAlignment="viewStart"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editPaymenttype"
+        app:layout_constraintEnd_toStartOf="@+id/editVisited"
         app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -128,7 +128,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUpvotes"
+        app:layout_constraintTop_toBottomOf="@+id/editRating"
         app:layout_constraintVertical_bias="0.329" />
 
     <TextView
@@ -139,7 +139,7 @@
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/editAmount"
+        app:layout_constraintBottom_toTopOf="@+id/editDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

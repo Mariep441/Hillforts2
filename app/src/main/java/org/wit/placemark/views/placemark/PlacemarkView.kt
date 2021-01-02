@@ -47,6 +47,8 @@ class PlacemarkView : BaseView(), AnkoLogger {
       presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString())
       presenter.doSelectImage()
     }
+
+
   }
 
   override fun showPlacemark(placemark: PlacemarkModel) {
@@ -121,6 +123,7 @@ class PlacemarkView : BaseView(), AnkoLogger {
     mapView.onResume()
     presenter.doResartLocationUpdates()
   }
+
 
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)

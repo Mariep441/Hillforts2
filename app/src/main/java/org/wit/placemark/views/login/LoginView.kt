@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.toast
 import org.wit.placemark.R
@@ -25,6 +26,7 @@ class LoginView : BaseView() {
     progressBar.visibility = View.GONE
 
     app.auth = FirebaseAuth.getInstance()
+    app.database = FirebaseDatabase.getInstance().reference
 
     presenter = initPresenter(LoginPresenter(this)) as LoginPresenter
 

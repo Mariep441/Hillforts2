@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
 import kotlinx.android.synthetic.main.fragment_edit.view.*
@@ -27,6 +28,7 @@ class EditFragment : Fragment(), AnkoLogger {
     lateinit var loader : AlertDialog
     lateinit var root: View
     var editPlacemark: PlacemarkModel? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +50,11 @@ class EditFragment : Fragment(), AnkoLogger {
 
 
         root.editMessage.setText(editPlacemark!!.message)
-        root.editUpvotes.setText(editPlacemark!!.upvotes.toString())
+        root.editRating.setText(editPlacemark!!.rating.toString())
 
 
         root.editUpdateButton.setOnClickListener {
-            showLoader(loader, "Updating Donation on Server...")
+            showLoader(loader, "Updating Placemark on Server...")
             updatePlacemarkData()
             updatePlacemark(editPlacemark!!.uid, editPlacemark!!)
             updateUserPlacemark(app.auth.currentUser!!.uid,
@@ -74,7 +76,7 @@ class EditFragment : Fragment(), AnkoLogger {
 
     fun updatePlacemarkData() {
         editPlacemark!!.message = root.editMessage.text.toString()
-        editPlacemark!!.upvotes = root.editUpvotes.text.toString().toInt()
+        editPlacemark!!.rating = root.editRating.text.toString().toInt()
     }
 
     fun updateUserPlacemark(userId: String, uid: String?, placemark: PlacemarkModel) {
@@ -97,7 +99,7 @@ class EditFragment : Fragment(), AnkoLogger {
     }
 
     fun updatePlacemark(uid: String?, placemark: PlacemarkModel) {
-        app.database.child("donations").child(uid!!)
+        app.database.child("placemarks").child(uid!!)
             .addListenerForSingleValueEvent(
                 object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -106,7 +108,7 @@ class EditFragment : Fragment(), AnkoLogger {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        info("Firebase Donation error : ${error.message}")
+                        info("Firebase Placemark error : ${error.message}")
                     }
                 })
     }

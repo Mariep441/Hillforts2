@@ -13,8 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+
 
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home.*
@@ -26,19 +25,18 @@ import org.wit.placemark.fragments.AboutUsFragment
 import org.wit.placemark.fragments.AddPlacemarkFragment
 import org.wit.placemark.fragments.ReportFragment
 import org.wit.placemark.main.MainApp
-import org.wit.placemark.models.Location
-import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.views.location.EditLocationView
 import org.wit.placemark.views.login.LoginView
 import org.wit.placemark.views.map.PlacemarkMapView
 import org.wit.placemark.views.placemark.PlacemarkView
 import org.wit.placemark.views.placemarklist.PlacemarkListView
 
+
 class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var ft: FragmentTransaction
     lateinit var app: MainApp
-    lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +68,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         when (item.itemId) {
             R.id.nav_newplacemark ->
-                navigateTo(AddPlacemarkFragment.newInstance())
+                navigateTo(ReportFragment.newInstance())
             R.id.nav_report ->
                 navigateTo(ReportFragment.newInstance())
             R.id.nav_aboutus ->

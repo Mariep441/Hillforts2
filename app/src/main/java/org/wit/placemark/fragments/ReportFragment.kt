@@ -12,19 +12,18 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_placemark_list.*
 
-
-import kotlinx.android.synthetic.main.fragment_report.view.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.wit.placemark.R
+import org.wit.placemark.views.placemarklist.PlacemarkAdapter
+import org.wit.placemark.views.placemarklist.PlacemarkListener
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.utils.*
-import org.wit.placemark.views.placemarklist.PlacemarkAdapter
-import org.wit.placemark.views.placemarklist.PlacemarkListener
+import kotlinx.android.synthetic.main.fragment_report.view.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
 
@@ -37,6 +36,7 @@ class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
         app = activity?.application as MainApp
     }
 
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -45,8 +45,9 @@ class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
         root = inflater.inflate(R.layout.fragment_report, container, false)
         activity?.title = getString(R.string.action_report)
 
-        root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
+        root.recyclerView.setLayoutManager(LinearLayoutManager(context))
         setSwipeRefresh()
+
 
         val swipeDeleteHandler = object : SwipeToDeleteCallback(activity!!) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -83,7 +84,7 @@ class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
         root.swiperefresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
             override fun onRefresh() {
                 root.swiperefresh.isRefreshing = true
-                getAllPlacemarks(app.auth.currentUser!!.uid)
+                loadPlacemarks()
             }
         })
     }
@@ -93,20 +94,20 @@ class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
     }
 
     fun deleteUserPlacemark(userId: String, uid: String?) {
-        app.database.child("user-donations").child(userId).child(uid!!)
+        app.database.child("user-placemarks").child(userId).child(uid!!)
                 .addListenerForSingleValueEvent(
                         object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 snapshot.ref.removeValue()
                             }
                             override fun onCancelled(error: DatabaseError) {
-                                info("Firebase Donation error : ${error.message}")
+                                info("Firebase Placemark error : ${error.message}")
                             }
                         })
     }
 
     fun deletePlacemark(uid: String?) {
-        app.database.child("donations").child(uid!!)
+        app.database.child("placemarks").child(uid!!)
                 .addListenerForSingleValueEvent(
                         object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
@@ -114,7 +115,7 @@ class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
                             }
 
                             override fun onCancelled(error: DatabaseError) {
-                                info("Firebase Donation error : ${error.message}")
+                                info("Firebase Placemark error : ${error.message}")
                             }
                         })
     }
@@ -128,37 +129,16 @@ class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
 
     override fun onResume() {
         super.onResume()
-        getAllPlacemarks(app.auth.currentUser!!.uid)
+        loadPlacemarks()
     }
 
-    fun getAllPlacemarks(userId: String?) {
-        loader = createLoader(activity!!)
-        showLoader(loader, "Downloading Placemarks from Firebase")
-        val placemarksList = ArrayList<PlacemarkModel>()
-        app.database.child("user-placemarks").child(userId!!)
-                .addValueEventListener(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
-                        info("Firebase Placemark error : ${error.message}")
-                    }
 
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        hideLoader(loader)
-                        val children = snapshot.children
-                        children.forEach {
-                            val placemark = it.
-                            getValue<PlacemarkModel>(PlacemarkModel::class.java)
+    private fun loadPlacemarks() {
+        showPlacemarks(app.placemarks.findAll())
+    }
 
-                            placemarksList.add(placemark!!)
-                            root.recyclerView.adapter =
-                                    PlacemarkAdapter(placemarksList, this@ReportFragment)
-                            root.recyclerView.adapter?.notifyDataSetChanged()
-                            checkSwipeRefresh()
-
-                            app.database.child("user-donations").child(userId)
-                                    .removeEventListener(this)
-                        }
-                    }
-                })
+    fun showPlacemarks (placemarks: ArrayList<PlacemarkModel>) {
+        recyclerView.adapter = PlacemarkAdapter(placemarks, this)
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 }
-

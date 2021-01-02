@@ -16,8 +16,9 @@ data class PlacemarkModel(var uid: String = "",
                           var description: String = "",
                           var image: String = "",
                           var message: String = "a message",
-                          var upvotes: Int = 0,
-                          var email: String? = "",
+                          var visited: Boolean = false,
+                          var favorite: Boolean = false,
+                          var rating: Int = 0,
                           @Embedded var location : Location = Location()): Parcelable
 
 
@@ -29,8 +30,11 @@ data class PlacemarkModel(var uid: String = "",
                 "title" to title,
                 "description" to description,
                 "image" to image,
-                "upvotes" to upvotes,
-                "email" to email
+                "message" to message,
+                "visited" to visited,
+                "favorite" to favorite,
+                "rating" to rating,
+
         )
     }
 }

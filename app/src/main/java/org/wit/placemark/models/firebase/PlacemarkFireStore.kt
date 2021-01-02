@@ -17,7 +17,7 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
 
   val placemarks = ArrayList<PlacemarkModel>()
   lateinit var userId: String
-  lateinit var db: DatabaseReference
+  lateinit var database: DatabaseReference
   lateinit var st: StorageReference
 
   override fun findAll(): ArrayList<PlacemarkModel> {
@@ -30,11 +30,11 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
   }
 
   override fun create(placemark: PlacemarkModel) {
-    val key = db.child("users").child(userId).child("placemarks").push().key
+    val key = database.child("users").child(userId).child("placemarks").push().key
     key?.let {
       placemark.uid = key
       placemarks.add(placemark)
-      db.child("users").child(userId).child("placemarks").child(key).setValue(placemark)
+      database.child("users").child(userId).child("placemarks").child(key).setValue(placemark)
       updateImage(placemark)
     }
   }
@@ -48,14 +48,14 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
       foundPlacemark.location = placemark.location
     }
 
-    db.child("users").child(userId).child("placemarks").child(placemark.uid).setValue(placemark)
+    database.child("users").child(userId).child("placemarks").child(placemark.uid).setValue(placemark)
     if ((placemark.image.length) > 0 && (placemark.image[0] != 'h')) {
       updateImage(placemark)
     }
   }
 
   override fun delete(placemark: PlacemarkModel) {
-    db.child("users").child(userId).child("placemarks").child(placemark.uid).removeValue()
+    database.child("users").child(userId).child("placemarks").child(placemark.uid).removeValue()
     placemarks.remove(placemark)
   }
 
@@ -81,7 +81,7 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
         }.addOnSuccessListener { taskSnapshot ->
           taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
             placemark.image = it.toString()
-            db.child("users").child(userId).child("placemarks").child(placemark.uid).setValue(placemark)
+            database.child("users").child(userId).child("placemarks").child(placemark.uid).setValue(placemark)
           }
         }
       }
@@ -98,9 +98,9 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
       }
     }
     userId = FirebaseAuth.getInstance().currentUser!!.uid
-    db = FirebaseDatabase.getInstance().reference
+    database = FirebaseDatabase.getInstance().reference
     st = FirebaseStorage.getInstance().reference
     placemarks.clear()
-    db.child("users").child(userId).child("placemarks").addListenerForSingleValueEvent(valueEventListener)
+    database.child("users").child(userId).child("placemarks").addListenerForSingleValueEvent(valueEventListener)
   }
 }
