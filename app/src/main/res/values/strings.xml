@@ -25,14 +25,14 @@
   <string name="menu_showMap">Show Map</string>
   <string name="menu_logout">Logout</string>
 
+  <string name="messageLoading">Please wait while we Connect to the Server...</string>
 
   <string name="action_addplacemark">Add Placemark</string>
   <string name="action_report">Report</string>
   <string name="Title">Welcome Homer</string>
   <string name="donateSubtitle">Please Give Generously</string>
   <string name="addPlacemarkButton">Add Placemark</string>
-  <string name="paypal">PayPal</string>
-  <string name="direct">Direct</string>
+
   <string name="amount">Amount</string>
   <string name="total">Total so Far</string>
   <string name="totalSoFar">$ Total</string>
@@ -41,11 +41,12 @@
   <string name="defaultMethod">N/A</string>
   <string name="enter_amount">Enter Amount</string>
 
+  <!-- Home-->
   <string name="title_activity_home">Home</string>
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
   <string name="nav_header_title">Hillforts of Ireland</string>
-  <string name="nav_header_subtitle">voteforhomer@android.com</string>
+  <string name="nav_header_subtitle">hillforts@android.com</string>
   <string name="nav_header_desc">Navigation header</string>
   <string name="action_settings">Settings</string>
 
@@ -56,14 +57,16 @@
   <string name="menu_share">Share</string>
   <string name="menu_send">Send</string>
 
+  <!-- Fragment About us-->
   <string name="aboutus_title">Hillforts of Ireland</string>
   <string name="aboutus_message">Archaeological Fieldwork : Part II\n\nMobile Application Development\n\n HDIP Computer Science</string>
 
-  <string name="messageLoading">Please wait while we Connect to the Server...</string>
-
-  <string name="action_edit">Edit Donation</string>
+  <!-- Fragment Edit-->
+  <string name="action_edit">Edit Placemark</string>
   <string name="action_update">Update</string>
-  <string name="message_edit">Please Update your Details Below</string>
+  <string name="message_edit">Add your personal notes</string>
+  <string name="visited">Visited</string>
+  <string name="favorite">Favorite</string>
 
   <!-- START Firebase Resources-->
 
@@ -88,9 +91,7 @@
   <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
   <string name="emailpassword_title_text">Please Login Below</string>
 
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main">MainActivity</string>
+
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

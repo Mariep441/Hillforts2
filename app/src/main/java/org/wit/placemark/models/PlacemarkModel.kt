@@ -1,25 +1,30 @@
 package org.wit.placemark.models
 
+import android.os.Build
 import android.os.Parcelable
+import androidx.annotation.RequiresApi
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
+import java.util.*
+
 
 @IgnoreExtraProperties
 @Parcelize
 @Entity
-data class PlacemarkModel(var uid: String = "",
-                          var title: String = "",
-                          var description: String = "",
-                          var image: String = "",
-                          var message: String = "a message",
-                          var visited: Boolean = false,
-                          var favorite: Boolean = false,
-                          var rating: Int = 0,
-                          @Embedded var location : Location = Location()): Parcelable
+data class PlacemarkModel @RequiresApi(Build.VERSION_CODES.O) constructor(var uid: String = "",
+                                                                          var title: String = "",
+                                                                          var description: String = "",
+                                                                          var image: String = "",
+                                                                          var message: String = "write your notes",
+                                                                          var visited: Boolean = false,
+                                                                          var dateVisited: Date = Date(2000,1,1),
+                                                                          var favorite: Boolean = false,
+                                                                          var rating: Float = 1f,
+                                                                          @Embedded var location : Location = Location()): Parcelable
 
 
 {
