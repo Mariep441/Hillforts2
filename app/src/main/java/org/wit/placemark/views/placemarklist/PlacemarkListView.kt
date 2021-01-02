@@ -9,7 +9,8 @@ import org.wit.placemark.R
 import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.views.BaseView
 
-class PlacemarkListView :  BaseView(), PlacemarkListener {
+class PlacemarkListView :  BaseView(),
+  PlacemarkListener {
 
   lateinit var presenter: PlacemarkListPresenter
 
@@ -19,15 +20,19 @@ class PlacemarkListView :  BaseView(), PlacemarkListener {
     setSupportActionBar(toolbar)
     super.init(toolbar, false)
 
+
     presenter = initPresenter(PlacemarkListPresenter(this)) as PlacemarkListPresenter
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     presenter.loadPlacemarks()
+
   }
 
-  override fun showPlacemarks(placemarks: List<PlacemarkModel>) {
-    recyclerView.adapter = PlacemarkAdapter(placemarks, this)
+
+  override fun showPlacemarks(placemarks: ArrayList<PlacemarkModel>) {
+    recyclerView.adapter =
+      PlacemarkAdapter(placemarks, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }
 

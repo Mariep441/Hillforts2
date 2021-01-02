@@ -16,12 +16,12 @@ class PlacemarkStoreRoom(val context: Context) : PlacemarkStore {
     dao = database.placemarkDao()
   }
 
-  override fun findAll(): List<PlacemarkModel> {
+  override fun findAll(): ArrayList<PlacemarkModel> {
     return dao.findAll()
   }
 
-  override fun findById(id: Long): PlacemarkModel? {
-    return dao.findById(id)
+  override fun findById(uid: String): PlacemarkModel? {
+    return dao.findById(uid)
   }
 
   override fun create(placemark: PlacemarkModel) {
