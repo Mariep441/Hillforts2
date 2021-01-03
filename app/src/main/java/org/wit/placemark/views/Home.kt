@@ -1,20 +1,20 @@
 package org.wit.placemark.views
 
+
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-
-
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.nav_header_home.view.*
@@ -22,9 +22,9 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.wit.placemark.R
 import org.wit.placemark.fragments.AboutUsFragment
-import org.wit.placemark.fragments.AddPlacemarkFragment
 import org.wit.placemark.fragments.FavoriteFragment
 import org.wit.placemark.fragments.ReportFragment
+import org.wit.placemark.fragments.StatsFragment
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.views.location.EditLocationView
 import org.wit.placemark.views.login.LoginView
@@ -44,10 +44,16 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         setContentView(R.layout.home)
         setSupportActionBar(toolbar)
         app = application as MainApp
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action",
-                Snackbar.LENGTH_LONG).setAction("Action", null).show()
+        fab.setOnClickListener { coordinatorLayout ->
+            Snackbar.make(coordinatorLayout, "Please visit the Atlas of Hillforts", Snackbar.LENGTH_LONG)
+                    .setAction("GO") {
+                        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://hillforts.arch.ox.ac.uk/"))
+                        startActivity(browserIntent)}
+                    .setActionTextColor(Color.BLUE)
+                    .show()
         }
+
+
 
         navView.setNavigationItemSelectedListener(this)
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -68,8 +74,8 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.nav_newplacemark ->
-                navigateTo(ReportFragment.newInstance())
+            R.id.nav_stats ->
+                navigateTo(StatsFragment.newInstance())
             R.id.nav_report ->
                 navigateTo(ReportFragment.newInstance())
             R.id.nav_favourites ->

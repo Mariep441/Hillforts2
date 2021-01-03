@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_placemark.lng
 import kotlinx.android.synthetic.main.activity_placemark.mapView
 import kotlinx.android.synthetic.main.activity_placemark.placemarkImage
 import kotlinx.android.synthetic.main.activity_placemark.placemarkTitle
-import kotlinx.android.synthetic.main.fragment_addplacemark.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 import org.wit.placemark.R

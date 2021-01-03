@@ -1,8 +1,11 @@
 package org.wit.placemark.views.placemarklist
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_placemark_list.*
 import org.wit.placemark.R
@@ -20,24 +23,25 @@ class PlacemarkListView :  BaseView(),
     setSupportActionBar(toolbar)
     super.init(toolbar, false)
 
-
     presenter = initPresenter(PlacemarkListPresenter(this)) as PlacemarkListPresenter
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     presenter.loadPlacemarks()
-
   }
 
-
   override fun showPlacemarks(placemarks: ArrayList<PlacemarkModel>) {
-    recyclerView.adapter =
-      PlacemarkAdapter(placemarks, this)
+    recyclerView.adapter = PlacemarkAdapter(placemarks, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }
 
-  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-    menuInflater.inflate(R.menu.menu_main, menu)
+  override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    menuInflater.inflate(R.menu.menu_search, menu)
+    val searchItem: MenuItem? = menu?.findItem(R.id.action_search)
+    val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+    val searchView: SearchView? = searchItem?.actionView as SearchView
+
+    searchView?.setSearchableInfo(searchManager.getSearchableInfo(componentName))
     return super.onCreateOptionsMenu(menu)
   }
 

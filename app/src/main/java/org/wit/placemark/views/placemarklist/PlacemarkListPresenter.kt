@@ -22,7 +22,6 @@ class PlacemarkListPresenter(view: BaseView) : BasePresenter(view) {
     view?.navigateTo(VIEW.MAPS)
   }
 
-
   fun loadPlacemarks() {
     doAsync {
       val placemarks = app.placemarks.findAll()
