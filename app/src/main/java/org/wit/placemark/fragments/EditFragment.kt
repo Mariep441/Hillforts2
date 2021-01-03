@@ -60,7 +60,6 @@ class EditFragment : Fragment(), AnkoLogger {
         root.editUpdateButton.setOnClickListener {
             showLoader(loader, "Updating Placemark on Server...")
             updatePlacemarkData()
-            updatePlacemark(editPlacemark!!.uid, editPlacemark!!)
             updateUserPlacemark(app.auth.currentUser!!.uid, editPlacemark!!.uid, editPlacemark!!)
         }
         return root
@@ -85,7 +84,7 @@ class EditFragment : Fragment(), AnkoLogger {
     }
 
     fun updateUserPlacemark(userId: String, uid: String?, placemark: PlacemarkModel) {
-        app.database.child("user-placemarks").child(userId).child(uid!!)
+        app.database.child("users").child(userId).child("placemarks").child(uid!!)
             .addListenerForSingleValueEvent(
                 object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -103,18 +102,4 @@ class EditFragment : Fragment(), AnkoLogger {
                 })
     }
 
-    fun updatePlacemark(uid: String?, placemark: PlacemarkModel) {
-        app.database.child("placemarks").child(uid!!)
-            .addListenerForSingleValueEvent(
-                object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.ref.setValue(placemark)
-                        hideLoader(loader)
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        info("Firebase Placemark error : ${error.message}")
-                    }
-                })
-    }
 }
