@@ -38,15 +38,10 @@ class EditFragment : Fragment(), AnkoLogger {
         super.onCreate(savedInstanceState)
         app = activity?.application as MainApp
 
-
         arguments?.let {
             editPlacemark = it.getParcelable("editplacemark")
         }
-
-
-
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,12 +52,10 @@ class EditFragment : Fragment(), AnkoLogger {
         activity?.title = getString(R.string.action_edit)
         loader = createLoader(activity!!)
 
-
         root.editVisited.setChecked(editPlacemark!!.visited)
         root.editFavorite.setChecked(editPlacemark!!.favorite)
         root.editMessage.setText(editPlacemark!!.message)
         root.ratingBar1.setRating(editPlacemark!!.rating)
-
 
         root.editUpdateButton.setOnClickListener {
             showLoader(loader, "Updating Placemark on Server...")
@@ -70,7 +63,6 @@ class EditFragment : Fragment(), AnkoLogger {
             updatePlacemark(editPlacemark!!.uid, editPlacemark!!)
             updateUserPlacemark(app.auth.currentUser!!.uid, editPlacemark!!.uid, editPlacemark!!)
         }
-
         return root
     }
 
@@ -125,6 +117,4 @@ class EditFragment : Fragment(), AnkoLogger {
                     }
                 })
     }
-
-
 }

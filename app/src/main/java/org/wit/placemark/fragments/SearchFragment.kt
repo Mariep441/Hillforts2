@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_report.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
-class FavoriteFragment : Fragment(), AnkoLogger, PlacemarkListener {
+class SearchFragment : Fragment(), AnkoLogger, PlacemarkListener {
 
     lateinit var app: MainApp
     lateinit var root: View
@@ -52,7 +52,7 @@ class FavoriteFragment : Fragment(), AnkoLogger, PlacemarkListener {
     companion object {
         @JvmStatic
         fun newInstance() =
-                FavoriteFragment().apply {
+                SearchFragment().apply {
                     arguments = Bundle().apply { }
                 }
     }

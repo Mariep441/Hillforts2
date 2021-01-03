@@ -141,4 +141,5 @@ class ReportFragment : Fragment(), AnkoLogger, PlacemarkListener {
         recyclerView.adapter = PlacemarkAdapter(placemarks, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
+
 }
