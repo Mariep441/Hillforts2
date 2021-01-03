@@ -57,6 +57,12 @@
   <string name="menu_share">Share</string>
   <string name="menu_send">Send</string>
 
+  <!-- Fragment Report-->
+
+
+  <!-- Fragment Favorite-->
+  <string name="action_favorite">Favorite</string>
+
   <!-- Fragment About us-->
   <string name="aboutus_title">Hillforts of Ireland</string>
   <string name="aboutus_message">Archaeological Fieldwork : Part II\n\nMobile Application Development\n\n HDIP Computer Science</string>

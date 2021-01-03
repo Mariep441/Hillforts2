@@ -15,16 +15,16 @@ import java.util.*
 @IgnoreExtraProperties
 @Parcelize
 @Entity
-data class PlacemarkModel @RequiresApi(Build.VERSION_CODES.O) constructor(var uid: String = "",
-                                                                          var title: String = "",
-                                                                          var description: String = "",
-                                                                          var image: String = "",
-                                                                          var message: String = "write your notes",
-                                                                          var visited: Boolean = false,
-                                                                          var dateVisited: Date = Date(2000,1,1),
-                                                                          var favorite: Boolean = false,
-                                                                          var rating: Float = 1f,
-                                                                          @Embedded var location : Location = Location()): Parcelable
+data class PlacemarkModel  constructor(var uid: String = "",
+                                       var title: String = "",
+                                       var description: String = "",
+                                       var image: String = "",
+                                       var message: String = "write your notes",
+                                       var visited: Boolean = false,
+                                       var dateVisited: Date = Date(2000,1,1),
+                                       var favorite: Boolean = false,
+                                       var rating: Float = 1f,
+                                       @Embedded var location : Location = Location()): Parcelable
 
 
 {

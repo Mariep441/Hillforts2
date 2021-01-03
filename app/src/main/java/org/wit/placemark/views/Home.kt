@@ -23,6 +23,7 @@ import org.jetbrains.anko.toast
 import org.wit.placemark.R
 import org.wit.placemark.fragments.AboutUsFragment
 import org.wit.placemark.fragments.AddPlacemarkFragment
+import org.wit.placemark.fragments.FavoriteFragment
 import org.wit.placemark.fragments.ReportFragment
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.views.location.EditLocationView
@@ -71,6 +72,8 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 navigateTo(ReportFragment.newInstance())
             R.id.nav_report ->
                 navigateTo(ReportFragment.newInstance())
+            R.id.nav_favourites ->
+                navigateTo(FavoriteFragment.newInstance())
             R.id.nav_aboutus ->
                 navigateTo(AboutUsFragment.newInstance())
             R.id.nav_sign_out ->
