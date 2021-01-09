@@ -74,16 +74,11 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.nav_stats ->
-                navigateTo(StatsFragment.newInstance())
-            R.id.nav_report ->
-                navigateTo(ReportFragment.newInstance())
-            R.id.nav_favourites ->
-                navigateTo(FavoriteFragment.newInstance())
-            R.id.nav_aboutus ->
-                navigateTo(AboutUsFragment.newInstance())
-            R.id.nav_sign_out ->
-                signOut()
+            R.id.nav_stats -> navigateTo(StatsFragment.newInstance())
+            R.id.nav_report -> navigateTo(ReportFragment.newInstance())
+            R.id.nav_favourites -> navigateTo(FavoriteFragment.newInstance())
+            R.id.nav_aboutus -> navigateTo(AboutUsFragment.newInstance())
+            R.id.nav_sign_out -> signOut()
 
             else -> toast("You Selected Something Else")
         }
