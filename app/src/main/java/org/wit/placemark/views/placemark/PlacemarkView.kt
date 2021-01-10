@@ -4,15 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.activity_placemark.*
-import kotlinx.android.synthetic.main.activity_placemark.chooseImage
-import kotlinx.android.synthetic.main.activity_placemark.description
-import kotlinx.android.synthetic.main.activity_placemark.lat
-import kotlinx.android.synthetic.main.activity_placemark.lng
-import kotlinx.android.synthetic.main.activity_placemark.mapView
-import kotlinx.android.synthetic.main.activity_placemark.placemarkImage
-import kotlinx.android.synthetic.main.activity_placemark.placemarkTitle
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 import org.wit.placemark.R
@@ -30,6 +24,7 @@ class PlacemarkView : BaseView(), AnkoLogger {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_placemark)
+
     super.init(toolbarAdd, true);
 
     mapView.onCreate(savedInstanceState);
@@ -50,7 +45,7 @@ class PlacemarkView : BaseView(), AnkoLogger {
   override fun showPlacemark(placemark: PlacemarkModel) {
     if (placemarkTitle.text.isEmpty()) placemarkTitle.setText(placemark.title)
     if (description.text.isEmpty())  description.setText(placemark.description)
-    placemarkImage.setImageBitmap(readImageFromPath(this, placemark.image))
+    Glide.with(this).load(placemark.image).into(placemarkImage);
 
     if (placemark.image != null) {
       chooseImage.setText(R.string.change_placemark_image)
@@ -119,7 +114,6 @@ class PlacemarkView : BaseView(), AnkoLogger {
     mapView.onResume()
     presenter.doResartLocationUpdates()
   }
-
 
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
