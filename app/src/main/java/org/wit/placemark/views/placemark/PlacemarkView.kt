@@ -30,7 +30,6 @@ class PlacemarkView : BaseView(), AnkoLogger {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_placemark)
-
     super.init(toolbarAdd, true);
 
     mapView.onCreate(savedInstanceState);
@@ -46,8 +45,6 @@ class PlacemarkView : BaseView(), AnkoLogger {
       presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString())
       presenter.doSelectImage()
     }
-
-
   }
 
   override fun showPlacemark(placemark: PlacemarkModel) {

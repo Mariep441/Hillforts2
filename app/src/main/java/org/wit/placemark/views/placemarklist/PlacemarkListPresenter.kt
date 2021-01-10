@@ -1,14 +1,17 @@
 package org.wit.placemark.views.placemarklist
 
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import org.wit.placemark.helpers.createDefaultLocationRequest
 import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.views.BasePresenter
 import org.wit.placemark.views.BaseView
 import org.wit.placemark.views.VIEW
 
-class PlacemarkListPresenter(view: BaseView) : BasePresenter(view) {
+class PlacemarkListPresenter(view: BaseView) : BasePresenter(view){
 
   fun doAddPlacemark() {
     view?.navigateTo(VIEW.PLACEMARK)
